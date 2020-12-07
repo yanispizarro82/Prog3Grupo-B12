@@ -8,7 +8,6 @@ public class Usuarios {
 	private String password;
 	private HashSet<Pedidos> pedidos;
 	private ArrayList<Productos> cesta;
-	private HashMap<String, ArrayList<Productos>> favoritos;
 
 	public Usuarios(String correo, String password, HashSet<Pedidos> pedidos) {
 		super();
@@ -16,7 +15,7 @@ public class Usuarios {
 		this.password = password;
 		this.pedidos = pedidos;
 		this.cesta = new ArrayList<Productos>();
-		this.favoritos = new HashMap<String, ArrayList<Productos>>();
+
 	}
 
 	public String getCorreo() {
@@ -39,14 +38,6 @@ public class Usuarios {
 		this.pedidos = pedidos;
 	}
 
-	public HashMap<String, ArrayList<Productos>> getFavoritos() {
-		return favoritos;
-	}
-
-	public void setListas(HashMap<String, ArrayList<Productos>> favoritos) {
-		this.favoritos = favoritos;
-	}
-
 	public ArrayList<Productos> getCesta() {
 		return cesta;
 	}
@@ -59,9 +50,4 @@ public class Usuarios {
 	public String toString() {
 		return "Usuario: correo (" + correo + "), pedidos actuales: (" + pedidos + ")";
 	}
-
-	public void deleteUser() {
-		
-	}
-
 }
