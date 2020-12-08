@@ -6,7 +6,7 @@ public class Productos {
 	private double precio;
 	private double descuento;
 	private String color;
-	private boolean noDisponible;
+	private boolean Disponible;
 
 	public Productos(String nombre, double precio, double descuento, String color) {
 		super();
@@ -14,7 +14,7 @@ public class Productos {
 		this.precio = precio;
 		this.descuento = descuento;
 		this.color = color;
-		this.noDisponible = false;
+		this.Disponible = false;
 	}
 
 	public String getNombre() {
@@ -49,18 +49,18 @@ public class Productos {
 		this.color = color;
 	}
 
-	public boolean noDisponible() {
-		return noDisponible;
+	public boolean Disponible() {
+		return Disponible;
 	}
 
-	public void setNoDisponible(boolean noDisponible) {
-		this.noDisponible = noDisponible;
+	public void setDisponible(boolean Disponible) {
+		this.Disponible = Disponible;
 	}
 
 	@Override
 	public String toString() {
 		return "El nombre del producto es un " + nombre + ", vale " + precio + " euros y tiene un descuento del " 
-				+ descuento + "%. Tiene un color " + color + ". " + noDisponible + " esta disponible.";
+				+ descuento + "%. Tiene un color " + color + ". " + Disponible + " esta disponible.";
 	}
 
 }

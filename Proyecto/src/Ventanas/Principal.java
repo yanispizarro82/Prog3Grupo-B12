@@ -8,20 +8,37 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Principal extends JFrame {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8848933392510367245L;
 	public static JPanel inicioSesionGeneral = new JPanel(new BorderLayout(6, 6));
+
 	public Principal() {
 		JFrame MainFrame = new JFrame();
 		MainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Principal");
 		setLayout(new GridLayout(2, 1));
-		
-		//Menu barra de pagina principal
-		
+		Thread transicion = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				while (true) {
+					try {
+						Thread.sleep(8000);
+						System.out.println("Cambio de imagen");
+					} catch (InterruptedException e) {
+						Thread.currentThread().interrupt();
+					}
+
+				}
+			}
+		});
+		transicion.start();
+
+		// Menu barra de pagina principal
+
 		JMenuBar barra = new JMenuBar();
 		JMenuItem registrarse = new JMenuItem("Registrarse");
 		JMenuItem inicioSesion = new JMenuItem("Iniciar sesión");
@@ -31,21 +48,30 @@ public class Principal extends JFrame {
 		JMenuItem favoritos = new JMenuItem("Favoritos");
 		JMenuItem cerrarSesion = new JMenuItem("Cerrar sesión");
 
-		//Ventana para Iniciar sesion
-		
-	    JPanel label = new JPanel(new GridLayout(0, 1, 2, 2));
-	    label.add(new JLabel("Usuario/E-Mail", SwingConstants.RIGHT));
-	    label.add(new JLabel("Contraseña", SwingConstants.RIGHT));
-	    inicioSesionGeneral.add(label, BorderLayout.WEST);
-	    JPanel textos = new JPanel(new GridLayout(0, 1, 2, 2));
-	    JTextField usuario = new JTextField();
-	    JPasswordField password = new JPasswordField();
-	    textos.add(usuario);
-	    textos.add(password);
-	    inicioSesionGeneral.add(textos, BorderLayout.CENTER);
-		
-	    //ActionListeners para todo 
-	    
+		JButton Jb1 = new JButton();
+		JButton Jb2 = new JButton();
+		JButton Jb3 = new JButton();
+
+		JPanel Norte = new JPanel();
+		JPanel Sur = new JPanel();
+		JPanel Oeste = new JPanel();
+		JPanel Este = new JPanel();
+
+		// Ventana para Iniciar sesion
+
+		JPanel label = new JPanel(new GridLayout(0, 1, 2, 2));
+		label.add(new JLabel("Usuario/E-Mail", SwingConstants.RIGHT));
+		label.add(new JLabel("Contraseña", SwingConstants.RIGHT));
+		inicioSesionGeneral.add(label, BorderLayout.WEST);
+		JPanel textos = new JPanel(new GridLayout(0, 1, 2, 2));
+		JTextField usuario = new JTextField();
+		JPasswordField password = new JPasswordField();
+		textos.add(usuario);
+		textos.add(password);
+		inicioSesionGeneral.add(textos, BorderLayout.CENTER);
+
+		// ActionListeners para todo
+
 		registrarse.addActionListener(new ActionListener() {
 
 			@Override
@@ -58,12 +84,13 @@ public class Principal extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(Main.ventana, inicioSesionGeneral,"Iniciar sesión",JOptionPane.QUESTION_MESSAGE);
+				JOptionPane.showMessageDialog(Main.ventana, inicioSesionGeneral, "Iniciar sesión",
+						JOptionPane.QUESTION_MESSAGE);
 				barra.removeAll();
 				barra.add(Cuenta);
 				validate();
 				repaint();
-				
+
 			}
 		});
 		cerrarSesion.addActionListener(new ActionListener() {
@@ -77,9 +104,19 @@ public class Principal extends JFrame {
 				repaint();
 			}
 		});
-		
-		//añadir todo a la pantalla principal
-		
+
+		ActionListener abrirProductos = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Main.ventana.dispose();
+				transicion.interrupt();
+				Main.ventana = new Registro();
+			}
+		};
+
+		// añadir todo a la pantalla principal
+
 		barra.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
 		inicioSesion.setMaximumSize(new Dimension(120, 70));
@@ -92,12 +129,19 @@ public class Principal extends JFrame {
 		Cuenta.add(favoritos);
 		barra.add(registrarse);
 		barra.add(inicioSesion);
-		
+
+		Jb1.addActionListener(abrirProductos);
+		Jb2.addActionListener(abrirProductos);
+		Jb3.addActionListener(abrirProductos);
+		Norte.add(Jb1);
+		Este.add(Jb3);
+		Sur.add(Oeste);
+		Sur.add(Este);
+		add(Norte);
+		add(Sur);
 
 		setVisible(true);
 		setSize(1200, 1000);
-
 	}
-
 
 }

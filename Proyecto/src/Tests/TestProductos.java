@@ -22,6 +22,16 @@ public class TestProductos {
 		// TODO Auto-generated method stub
 
 	}
+	
+	private void assertFalse(boolean is) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	private void assertTrue(boolean is) {
+		// TODO Auto-generated method stub
+
+	}
 
 	@Before
 	public void setUp() {
@@ -45,6 +55,16 @@ public class TestProductos {
 		assertEquals(3.55, Gorro.getPrecio() * Gorro.getDescuento());
 	}
 
+	@Test
+	public void testDisponible() {
+		Pantalon.setDisponible(true);
+		Gorro.setDisponible(true);
+		assertTrue(Pantalon.Disponible());
+		assertFalse(Zapatos.Disponible());
+		assertTrue(Gorro.Disponible());
+	}
+	
+	
 	@Test
 	public void testTalla() {
 		assertEquals("L", ((CamisetasPantalones) Pantalon).getTalla().letra());
