@@ -9,14 +9,10 @@ import main.Main;
 
 public class Registro extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2166905813751874979L;
 
 	public Registro() {
-		JFrame MainFrame = new JFrame("MainFrame");
-		MainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Registrar");
 
 		JLabel jlNombre = new JLabel("Nombre: ");
@@ -39,7 +35,7 @@ public class Registro extends JFrame {
 		JPanel jpFNacimiento = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JPanel jpDir = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JPanel jpReg = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		
+
 		jpNombre.add(jlNombre);
 		jpNombre.add(jtNombre);
 		add(jpNombre);
@@ -47,7 +43,7 @@ public class Registro extends JFrame {
 		jpPassword.add(jlPassword);
 		jpPassword.add(jtPassword);
 		add(jpPassword);
-		
+
 		jpCorreo.add(jlCorreo);
 		jpCorreo.add(jtCorreo);
 		add(jpCorreo);
@@ -55,16 +51,11 @@ public class Registro extends JFrame {
 		jpFNacimiento.add(jlFNacimiento);
 		jpFNacimiento.add(jtFNacimiento);
 		add(jpFNacimiento);
-		
+
 		jpDir.add(jlDir);
 		jpDir.add(jtDir);
 		add(jpDir);
-		
-		jpReg.add(jbReg);
-		jbReg.setSize(70,30);
-		jbReg.setLocation(500, 50);
-		add(jbReg);
-		
+
 		jbReg.addActionListener(new ActionListener() {
 
 			@Override
@@ -74,7 +65,7 @@ public class Registro extends JFrame {
 			}
 		});
 
-		setBackground(Color.CYAN);
+		add(jbReg);
 		setVisible(true);
 		setSize(600, 600);
 	}

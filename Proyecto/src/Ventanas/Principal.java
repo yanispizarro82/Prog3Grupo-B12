@@ -20,14 +20,13 @@ public class Principal extends JFrame {
 		MainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Principal");
 		setLayout(new GridLayout(2, 1));
-		Thread transicion = new Thread(new Runnable() {
+		Thread hilo = new Thread(new Runnable() {
 
 			@Override
 			public void run() {
 				while (true) {
 					try {
 						Thread.sleep(8000);
-						System.out.println("Cambio de imagen");
 					} catch (InterruptedException e) {
 						Thread.currentThread().interrupt();
 					}
@@ -35,7 +34,7 @@ public class Principal extends JFrame {
 				}
 			}
 		});
-		transicion.start();
+		hilo.start();
 
 		// Menu barra de pagina principal
 
@@ -66,6 +65,7 @@ public class Principal extends JFrame {
 		JPanel textos = new JPanel(new GridLayout(0, 1, 2, 2));
 		JTextField usuario = new JTextField();
 		JPasswordField password = new JPasswordField();
+		
 		textos.add(usuario);
 		textos.add(password);
 		inicioSesionGeneral.add(textos, BorderLayout.CENTER);
@@ -110,7 +110,7 @@ public class Principal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Main.ventana.dispose();
-				transicion.interrupt();
+				hilo.interrupt();
 				Main.ventana = new Registro();
 			}
 		};
