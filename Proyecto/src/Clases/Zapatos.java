@@ -3,12 +3,14 @@ package Clases;
 public class Zapatos extends Productos {
 	private int id;
 	private String material;
+	private int talla;
 
-	public Zapatos(String nombre, double precio, double descuento, String color, int id,
+	public Zapatos(String nombre, double precio, double descuento, String color, int id, String imagen, int talla,
 			String material) {
-		super(nombre, precio, descuento, color);
+		super(nombre, precio, descuento, color, imagen);
 		this.id = id;
 		this.material = material;
+		this.talla = talla;
 
 	}
 
@@ -26,6 +28,14 @@ public class Zapatos extends Productos {
 
 	public void setMaterial(String material) {
 		this.material = material;
+	}
+
+	public int getTalla() {
+		return talla;
+	}
+
+	public void setTalla(int talla) {
+		this.talla = talla;
 	}
 
 	public String toString() {

@@ -7,14 +7,16 @@ public class Productos {
 	private double descuento;
 	private String color;
 	private boolean Disponible;
+	private String imagen;
 
-	public Productos(String nombre, double precio, double descuento, String color) {
+	public Productos(String nombre, double precio, double descuento, String color, String imagen) {
 		super();
 		this.nombre = nombre;
 		this.precio = precio;
 		this.descuento = descuento;
 		this.color = color;
 		this.Disponible = false;
+		this.imagen = imagen;
 	}
 
 	public String getNombre() {
@@ -57,9 +59,17 @@ public class Productos {
 		this.Disponible = Disponible;
 	}
 
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
 	@Override
 	public String toString() {
-		return "El nombre del producto es un " + nombre + ", vale " + precio + " euros y tiene un descuento del " 
+		return "El nombre del producto es un " + nombre + ", vale " + precio + " euros y tiene un descuento del "
 				+ descuento + "%. Tiene un color " + color + ". " + Disponible + " esta disponible.";
 	}
 

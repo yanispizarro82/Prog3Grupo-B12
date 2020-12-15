@@ -19,10 +19,6 @@ public class Pedidos {
 		this.fechaEntrega = null;
 	}
 
-	public Pedidos(HashMap<Productos, Integer> hashMap, int i, int j) {
-		// TODO Auto-generated constructor stub
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -35,7 +31,7 @@ public class Pedidos {
 		this.productos = productos;
 	}
 
-	public double importeFinal() {
+	public double getImporteFinal() {
 		return importeFinal;
 	}
 
