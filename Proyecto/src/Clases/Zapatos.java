@@ -6,8 +6,8 @@ public class Zapatos extends Productos {
 	private int talla;
 
 	public Zapatos(String nombre, double precio, double descuento, String color, int id, String imagen, int talla,
-			String material) {
-		super(nombre, precio, descuento, color, imagen);
+			String material, boolean disponible) {
+		super(nombre, precio, descuento, color, imagen, disponible);
 		this.id = id;
 		this.material = material;
 		this.talla = talla;

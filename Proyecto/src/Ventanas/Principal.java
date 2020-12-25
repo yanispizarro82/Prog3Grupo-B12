@@ -6,71 +6,41 @@ import main.Main;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.net.URL;
 
 public class Principal extends JFrame {
 
-	/**
-	 * 
-	 */
+	public static JMenuBar barra = new JMenuBar();
+	public static JMenuItem registrarse = new JMenuItem("Registrarse");
+	public static JMenuItem inicioSesion = new JMenuItem("Iniciar sesión");
+	public static JMenu Cuenta = new JMenu("Cuenta");
+	public static JMenuItem perfil = new JMenuItem("Perfil");
+	public static JMenuItem pedidos = new JMenuItem("Pedidos");
+	public static JMenuItem favoritos = new JMenuItem("Favoritos");
+	public static JMenuItem cerrarSesion = new JMenuItem("Cerrar sesión");
+
+	public static URL icono;
+	public static Image img;
+	public static Image resizedImage;
+	public static JButton boton1;
+	public static JPanel superior;
+
 	private static final long serialVersionUID = 8848933392510367245L;
 	public static JPanel inicioSesionGeneral = new JPanel(new BorderLayout(6, 6));
 
 	public Principal() {
-		JFrame MainFrame = new JFrame();
-		MainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Principal");
 		setLayout(new GridLayout(2, 1));
-		Thread hilo = new Thread(new Runnable() {
 
-			@Override
-			public void run() {
-				while (true) {
-					try {
-						Thread.sleep(8000);
-					} catch (InterruptedException e) {
-						Thread.currentThread().interrupt();
-					}
-
-				}
-			}
-		});
-		hilo.start();
-
-		// Menu barra de pagina principal
-
-		JMenuBar barra = new JMenuBar();
-		JMenuItem registrarse = new JMenuItem("Registrarse");
-		JMenuItem inicioSesion = new JMenuItem("Iniciar sesión");
-		JMenu Cuenta = new JMenu("Cuenta");
-		JMenuItem perfil = new JMenuItem("Perfil");
-		JMenuItem pedidos = new JMenuItem("Pedidos");
-		JMenuItem favoritos = new JMenuItem("Favoritos");
-		JMenuItem cerrarSesion = new JMenuItem("Cerrar sesión");
-
-		JButton Jb1 = new JButton();
-		JButton Jb2 = new JButton();
-		JButton Jb3 = new JButton();
-
-		JPanel Norte = new JPanel();
-		JPanel Sur = new JPanel();
-		JPanel Oeste = new JPanel();
-		JPanel Este = new JPanel();
-
-		// Ventana para Iniciar sesion
-
-		JPanel label = new JPanel(new GridLayout(0, 1, 2, 2));
-		label.add(new JLabel("Usuario/E-Mail", SwingConstants.RIGHT));
-		label.add(new JLabel("Contraseña", SwingConstants.RIGHT));
-		inicioSesionGeneral.add(label, BorderLayout.WEST);
-		JPanel textos = new JPanel(new GridLayout(0, 1, 2, 2));
-		JTextField usuario = new JTextField();
-		JPasswordField password = new JPasswordField();
-		
-		textos.add(usuario);
-		textos.add(password);
-		inicioSesionGeneral.add(textos, BorderLayout.CENTER);
-
-		// ActionListeners para todo
+		barra = new JMenuBar();
+		registrarse = new JMenuItem("Registrarse");
+		inicioSesion = new JMenuItem("Iniciar sesi");
+		Cuenta = new JMenu("Mi cuenta");
+		perfil = new JMenuItem("Perfil");
+		pedidos = new JMenuItem("Pedidos");
+		favoritos = new JMenuItem("Lista de deseados");
+		cerrarSesion = new JMenuItem("Cerrar sesi");
 
 		registrarse.addActionListener(new ActionListener() {
 
@@ -80,6 +50,7 @@ public class Principal extends JFrame {
 				Main.ventana = new Registro();
 			}
 		});
+
 		inicioSesion.addActionListener(new ActionListener() {
 
 			@Override
@@ -93,6 +64,7 @@ public class Principal extends JFrame {
 
 			}
 		});
+
 		cerrarSesion.addActionListener(new ActionListener() {
 
 			@Override
@@ -110,13 +82,10 @@ public class Principal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Main.ventana.dispose();
-				hilo.interrupt();
 				Main.ventana = new Registro();
 			}
 		};
-
-		// añadir todo a la pantalla principal
-
+		
 		barra.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
 		inicioSesion.setMaximumSize(new Dimension(120, 70));
@@ -124,11 +93,29 @@ public class Principal extends JFrame {
 		registrarse.setMaximumSize(new Dimension(120, 70));
 		setJMenuBar(barra);
 		Cuenta.add(perfil);
-		Cuenta.add(cerrarSesion);
 		Cuenta.add(pedidos);
 		Cuenta.add(favoritos);
-		barra.add(registrarse);
+		Cuenta.add(cerrarSesion);
 		barra.add(inicioSesion);
+		barra.add(registrarse);
+		// Menu barra de pagina principal
+
+		JButton Jb1 = new JButton();
+		JButton Jb2 = new JButton();
+		JButton Jb3 = new JButton();
+
+		superior = new JPanel();
+		JPanel Norte = new JPanel();
+		JPanel Sur = new JPanel();
+		JPanel Oeste = new JPanel();
+		JPanel Este = new JPanel();
+
+		// Ventana para Iniciar sesion
+
+		JPanel label = new JPanel(new GridLayout(0, 1, 2, 2));
+		label.add(new JLabel("Usuario/E-Mail", SwingConstants.RIGHT));
+		label.add(new JLabel("Contraseña", SwingConstants.RIGHT));
+		inicioSesionGeneral.add(label, BorderLayout.WEST);
 
 		Jb1.addActionListener(abrirProductos);
 		Jb2.addActionListener(abrirProductos);

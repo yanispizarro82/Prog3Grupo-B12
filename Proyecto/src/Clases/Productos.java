@@ -9,13 +9,13 @@ public class Productos {
 	private boolean Disponible;
 	private String imagen;
 
-	public Productos(String nombre, double precio, double descuento, String color, String imagen) {
+	public Productos(String nombre, double precio, double descuento, String color, String imagen, boolean disponible) {
 		super();
 		this.nombre = nombre;
 		this.precio = precio;
 		this.descuento = descuento;
 		this.color = color;
-		this.Disponible = false;
+		this.Disponible = disponible;
 		this.imagen = imagen;
 	}
 
