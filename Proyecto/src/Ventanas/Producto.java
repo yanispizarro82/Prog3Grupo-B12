@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,11 +18,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
 
+import Clases.CamisetasPantalones;
+import main.CargarMas;
 import main.Main;
 
 public class Producto extends JFrame {
 
-	private static final long serialVersionUID = -6449967614834433658L;
+	public static Iterator<CamisetasPantalones> i = Main.CamisetasPantalones.iterator();
 	public static int prodAct = 0;
 	public static int hastaProd = 0;
 	public static JPanel panCat = new JPanel();
@@ -61,38 +64,6 @@ public class Producto extends JFrame {
 		JMenuItem deseados = new JMenuItem("Lista de deseados");
 		JMenuItem cerrarSesion = new JMenuItem("Cerrar sesion");
 
-		registrarse.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Main.ventana.dispose();
-				Main.ventana = new Registro();
-			}
-		});
-		iniciarSesion.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(Main.ventana, Principal.inicioSesionGeneral, "Iniciar sesion",
-						JOptionPane.QUESTION_MESSAGE);
-				barra.removeAll();
-				barra.add(cuentaPersonal);
-				validate();
-				repaint();
-
-			}
-		});
-		cerrarSesion.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				barra.removeAll();
-				barra.add(iniciarSesion);
-				barra.add(registrarse);
-				validate();
-				repaint();
-			}
-		});
 		barra.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 
 		iniciarSesion.setMaximumSize(new Dimension(120, 30));
@@ -105,22 +76,38 @@ public class Producto extends JFrame {
 		cuentaPersonal.add(cerrarSesion);
 		barra.add(iniciarSesion);
 		barra.add(registrarse);
-		
+
 		panCat.add(verMas);
 
 		verMas.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				verMas();
+				new CargarMas().run();
 			}
 		});
-		verMas();
+		new CargarMas().run();
+
 		pack();
 		setVisible(true);
 		setSize(800, 600);
 		add(scroll);
 
+	}
+
+	public String getImagen() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int getPrecio() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getDescuento() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

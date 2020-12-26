@@ -27,4 +27,20 @@ public class JDBC {
 			System.out.println("Error de SQL");
 		}
 	}
+
+	public static boolean comprobarUsuario(String text) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public static boolean comprobarPassw(String text, String text2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public static void crearUsuario(String text, String text2) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
