@@ -13,6 +13,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Clases.Productos;
 import Clases.Tallas;
 import Clases.Usuarios;
 import main.Main;
@@ -20,19 +21,19 @@ import main.Main;
 public class SelecProd {
 	static JDialog selection;
 
-	public static void mostrar(Usuarios user, Producto product) {
-		selection = new JDialog(Main.ventana, product.getName(), true);
+	public static void mostrar(Usuarios user, Productos productos) {
+		selection = new JDialog(Main.ventana, productos.getNombre(), true);
 		selection.setLayout(new GridLayout(2, 2));
 		JPanel info = new JPanel(new BorderLayout());
 
-		URL icon = Main.ventana.getClass().getResource("/" + product.getImagen());
+		URL icon = Main.ventana.getClass().getResource("/" + productos.getImagen());
 		Image img = new ImageIcon(icon).getImage();
 		Image resizedImage = img.getScaledInstance(220, 220, java.awt.Image.SCALE_SMOOTH);
 		JLabel imagen = new JLabel(new ImageIcon(resizedImage));
 		selection.add(imagen);
 
-		JLabel name = new JLabel(product.getName());
-		JLabel price = new JLabel(String.valueOf(product.getPrecio() * product.getDescuento()));
+		JLabel name = new JLabel(productos.getNombre());
+		JLabel price = new JLabel(String.valueOf(productos.getPrecio() * productos.getDescuento()));
 		JComboBox<Tallas> tallas = new JComboBox<Tallas>();
 		tallas.setModel(new DefaultComboBoxModel<Tallas>(Tallas.values()));
 		info.add(name, BorderLayout.NORTH);

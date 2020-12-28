@@ -24,10 +24,10 @@ public class TestPedidos {
 	public void setUp() {
 		pedido1 = new Pedidos(new HashMap<Productos, Integer>(), 12);
 		pedido2 = new Pedidos(new HashMap<Productos, Integer>(), 20);
-		//pedido3 = new Pedidos(new HashMap<Productos, Integer>(), 8, 6);
+		//pedido3 = new Pedidos(new HashMap<Productos, Integer>(), 8);
 
-		Pantalon = new CamisetasPantalones("pantalon vaquero", 25.0, 1.0, "Rojo", "img/pantalon", Tallas.M, "Algodon");
-		Zapatos = new Zapatos("Oxford", 30, 1.3, "Azul", 1234, "img/zapatos", 42, "Cuero");
+		Pantalon = new CamisetasPantalones("pantalon vaquero", 25.0, 1.0, "Rojo", "img/pantalon", false, Tallas.M, "Algodon", true);
+		Zapatos = new Zapatos("Oxford", 30, 1.3, "Azul", 1234, "img/zapatos", 42, "Cuero", false);
 		//Gorro = new Productos("Gorro de Carpintero", 21, 0.5, "img/gorro", "Rojo");
 		
 
