@@ -2,6 +2,7 @@ package Clases;
 
 public class Productos {
 
+	private int id;
 	private String nombre;
 	private double precio;
 	private double descuento;
@@ -9,14 +10,23 @@ public class Productos {
 	private boolean Disponible;
 	private String imagen;
 
-	public Productos(String nombre, double precio, double descuento, String color, String imagen, boolean disponible) {
+	public Productos(int id, String nombre, double precio, double descuento, String color, String imagen, boolean disponible) {
 		super();
+		this.id = id;
 		this.nombre = nombre;
 		this.precio = precio;
 		this.descuento = descuento;
 		this.color = color;
 		this.Disponible = disponible;
 		this.imagen = imagen;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNombre() {

@@ -6,7 +6,7 @@ public class Gorros extends Productos {
 	private String tipo;
 
 	public Gorros(String nombre, double precio, double descuento, int id, String imagen, boolean disponible, String color, String tipo, String material) {
-		super(nombre, precio, descuento, color, tipo, disponible);
+		super(id, nombre, precio, descuento, color, tipo, disponible);
 		this.id = id;
 		this.material = material;
 

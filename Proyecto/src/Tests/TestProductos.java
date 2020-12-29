@@ -35,8 +35,8 @@ public class TestProductos {
 
 	@Before
 	public void setUp() {
-		Pantalon = new CamisetasPantalones("pantalon vaquero", 25.0, 1.0, "Rojo", "img/pantalon", true, Tallas.M, "Algodon", false);
-		Zapatos = new Zapatos("Oxford", 30, 1.3, "Azul", 1234, "img/zapatos", 42, "Cuero", false);
+		Pantalon = new CamisetasPantalones(0, "pantalon vaquero", 25.0, 1.0, "Rojo", "img/pantalon", true, Tallas.M, "Algodon", false);
+		Zapatos = new Zapatos(0, "Oxford", 30, 1.3, "Azul", "img/zapatos", 42, "Cuero", false);
 		//Gorro = new Productos("Gorro de Carpintero", 21, 0.5, "img/gorro", "Rojo");
 
 	}

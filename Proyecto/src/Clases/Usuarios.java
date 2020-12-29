@@ -9,6 +9,12 @@ public class Usuarios {
 	private HashSet<Pedidos> pedidos;
 	private ArrayList<Productos> cesta;
 	private HashMap<String,ArrayList<Productos>> lista;
+	
+	public Usuarios(String correo, String password) {
+		super();
+		this.correo = correo;
+		this.password = password;
+	}
 
 	public Usuarios(String correo, String password, HashSet<Pedidos> pedidos) {
 		super();

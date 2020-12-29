@@ -6,8 +6,8 @@ public class CamisetasPantalones extends Productos {
 	private String material;
 	private boolean esCamiseta;
 
-	public CamisetasPantalones(String nombre, double precio, double descuento, String color, String imagen,boolean disponible, Tallas tallas, String material, boolean esCamiseta) {
-		super(nombre, precio, descuento, color, material, disponible);
+	public CamisetasPantalones(int id, String nombre, double precio, double descuento, String color, String imagen,boolean disponible, Tallas tallas, String material, boolean esCamiseta) {
+		super(id, nombre, precio, descuento, color, material, disponible);
 		this.tallas = tallas;
 		this.material = material;
 		this.esCamiseta = esCamiseta;

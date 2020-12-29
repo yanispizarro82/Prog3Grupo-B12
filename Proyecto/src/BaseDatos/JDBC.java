@@ -43,7 +43,7 @@ public class JDBC {
 				Tallas talla = Tallas.valueOf(rs.getString("talla"));
 				String material = rs.getString("material");
 				boolean esCamiseta = (rs.getInt("esCamiseta") == 1);
-				Productos camiseta = new CamisetasPantalones(nombre, precio, descuento, color, imagen, disponible,
+				Productos camiseta = new CamisetasPantalones(id, nombre, precio, descuento, color, imagen, disponible,
 						talla, material, esCamiseta);
 				Main.CamisetasPantalones.add((CamisetasPantalones) camiseta);
 				Main.mapaProducto.put(String.valueOf(rs.getInt("idProducto")), camiseta);
@@ -60,7 +60,7 @@ public class JDBC {
 				boolean disponible = (rs.getInt("disponible") == 1);
 				int talla = rs.getInt("talla");
 				String material = rs.getString("material");
-				Productos zapato = new Zapatos(nombre, precio, descuento, color, id, imagen, talla, material, disponible);
+				Productos zapato = new Zapatos(id, nombre, precio, descuento, color, imagen, talla, material, disponible);
 				Main.zapatos.add((Zapatos) zapato);
 				Main.mapaProducto.put(String.valueOf(rs.getInt("idProducto")), zapato);
 			}

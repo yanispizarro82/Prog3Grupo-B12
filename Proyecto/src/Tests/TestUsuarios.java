@@ -40,8 +40,8 @@ public class TestUsuarios {
 		Luigi = new Usuarios("Luigi@gmail.com", "Password2", new HashSet<Pedidos>());
 		Toad = new Usuarios("Toad@gmail.com", "Password3", new HashSet<Pedidos>());
 
-		Pantalon = new CamisetasPantalones("pantalon vaquero", 25.0, 1.0, "Rojo", "img/pantalon", true, Tallas.M, "Algodon", true);
-		Zapatos = new Zapatos("Oxford", 30, 1.3, "Azul", 1234, "img/zapatos", 42, "Cuero", true);
+		Pantalon = new CamisetasPantalones(0, "pantalon vaquero", 25.0, 1.0, "Rojo", "img/pantalon", true, Tallas.M, "Algodon", true);
+		Zapatos = new Zapatos(0, "Oxford", 30, 1.3, "Azul", "img/zapatos", 42, "Cuero", true);
 		// Gorro = new Productos("Gorro de Carpintero", 21, 0.5, "img/gorro", "Rojo");
 
 		Mario.getCesta().add(Pantalon);
