@@ -1,4 +1,4 @@
-package Ventanas;
+package Windows;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -14,10 +14,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import BaseDatos.JDBC;
+import DataBase.JDBC;
 import main.Main;
 
-public class inicioSesion {
+public class LogInWindow {
 
 	public static void iniciar(String usuar) {
 
@@ -37,32 +37,32 @@ public class inicioSesion {
 		UserPassw.add(controls, BorderLayout.CENTER);
 		username.setText(usuar);
 		password.setText("");
-		int opcion = JOptionPane.showConfirmDialog(Main.ventana, UserPassw, "Log in",
+		int option = JOptionPane.showConfirmDialog(Main.window, UserPassw, "Log in",
 				JOptionPane.OK_CANCEL_OPTION);
 
-		if (JOptionPane.OK_OPTION == opcion) {
+		if (JOptionPane.OK_OPTION == option) {
 			if (!username.getText().equals("")) {
-				if (JDBC.comprobarUsuario(username.getText())) {
+				if (JDBC.checkUser(username.getText())) {
 					if (JDBC.comprobarPassw(username.getText(), password.getText())) {
-						Main.usuarioIniciado = Main.mapaUsuario.get(username.getText());
-						Principal.barra.removeAll();
-						Principal.barra.add(Principal.Cuenta);
-						Main.ventana.validate();
-						Main.ventana.repaint();
+						Main.userIni = Main.userMap.get(username.getText());
+						Principal.bar.removeAll();
+						Principal.bar.add(Principal.myAccount);
+						Main.window.validate();
+						Main.window.repaint();
 
 					} else {
-						JOptionPane.showMessageDialog(Main.ventana, "Wrong Password", "Wrong Password",
+						JOptionPane.showMessageDialog(Main.window, "Wrong Password", "Wrong Password",
 								JOptionPane.ERROR_MESSAGE);
 						iniciar(username.getText());
 					}
 				} else {
-					JOptionPane.showMessageDialog(Main.ventana, "Username not found", "Unknown username",
+					JOptionPane.showMessageDialog(Main.window, "Username not found", "Unknown username",
 							JOptionPane.ERROR_MESSAGE);
 					iniciar(username.getText());
 				}
 
 			} else {
-				JOptionPane.showMessageDialog(Main.ventana, "Introduce username", "Introduce username",
+				JOptionPane.showMessageDialog(Main.window, "Introduce username", "Introduce username",
 						JOptionPane.ERROR_MESSAGE);
 				iniciar(username.getText());
 			}
@@ -74,23 +74,23 @@ public class inicioSesion {
 		JPanel label = new JPanel(new GridLayout(0, 1));
 
 		JLabel lPassw = new JLabel("Password:");
-		JLabel lConfirmar = new JLabel("Confirm Password:");
-		JLabel lCorreo = new JLabel("E-Mail:");
+		JLabel lConfirm = new JLabel("Confirm Password:");
+		JLabel lMail = new JLabel("E-Mail:");
 
-		label.add(lCorreo);
+		label.add(lMail);
 		label.add(lPassw);
-		label.add(lConfirmar);
+		label.add(lConfirm);
 		registro.add(label, BorderLayout.WEST);
 
 		JPanel texto = new JPanel(new GridLayout(0, 1));
 
-		JPasswordField tConfirmar = new JPasswordField(20);
-		JPasswordField tContrasenya = new JPasswordField(20);
-		JTextField tCorreo = new JTextField(20);
+		JPasswordField tConfirm = new JPasswordField(20);
+		JPasswordField tPassword = new JPasswordField(20);
+		JTextField tMail = new JTextField(20);
 
-		texto.add(tCorreo);
-		texto.add(tContrasenya);
-		texto.add(tConfirmar);
+		texto.add(tMail);
+		texto.add(tPassword);
+		texto.add(tConfirm);
 		registro.add(texto, BorderLayout.EAST);
 
 		JButton bRegistrarse = new JButton("Register");
@@ -99,22 +99,22 @@ public class inicioSesion {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (tCorreo.getText().length() <= 30 && tCorreo.getText().trim().length() > 0) {
-					if (tContrasenya.getText().length() <= 50 && tContrasenya.getText().trim().length() > 0) {
-						if (tConfirmar.getText().equals(tContrasenya.getText())) {
-							JDBC.crearUsuario(tCorreo.getText(), tContrasenya.getText());
-							Main.ventana.dispose();
-							Main.ventana = new Principal();
+				if (tMail.getText().length() <= 30 && tMail.getText().trim().length() > 0) {
+					if (tPassword.getText().length() <= 50 && tPassword.getText().trim().length() > 0) {
+						if (tConfirm.getText().equals(tPassword.getText())) {
+							JDBC.crearUsuario(tMail.getText(), tPassword.getText());
+							Main.window.dispose();
+							Main.window = new Principal();
 						} else {
-							JOptionPane.showMessageDialog(Main.ventana, "Passwords don't match",
+							JOptionPane.showMessageDialog(Main.window, "Passwords don't match",
 									"Passwords must match.", JOptionPane.ERROR_MESSAGE);
 						}
 					} else {
-						JOptionPane.showMessageDialog(Main.ventana, "Invalid Password",
+						JOptionPane.showMessageDialog(Main.window, "Invalid Password",
 								"Introduced password is invalid.", JOptionPane.ERROR_MESSAGE);
 					}
 				} else {
-					JOptionPane.showMessageDialog(Main.ventana, "Invalid E-Mail",
+					JOptionPane.showMessageDialog(Main.window, "Invalid E-Mail",
 							"Introduced E-Mail is invalid.", JOptionPane.ERROR_MESSAGE);
 				}
 
@@ -122,7 +122,7 @@ public class inicioSesion {
 		});
 
 		registro.add(bRegistrarse, BorderLayout.SOUTH);
-		JOptionPane.showOptionDialog(Main.ventana, registro, "Register", JOptionPane.DEFAULT_OPTION,
+		JOptionPane.showOptionDialog(Main.window, registro, "Register", JOptionPane.DEFAULT_OPTION,
 				JOptionPane.PLAIN_MESSAGE, null, new Object[] {}, null);
 
 	}

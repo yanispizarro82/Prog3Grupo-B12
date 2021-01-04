@@ -1,12 +1,12 @@
-package Clases;
+package Classes;
 
-public class Gorros extends Productos {
+public class Hats extends Products {
 	private int id;
 	private String material;
-	private String tipo;
+	private String type;
 
-	public Gorros(String nombre, double precio, double descuento, int id, String imagen, boolean disponible, String color, String tipo, String material) {
-		super(id, nombre, precio, descuento, color, tipo, disponible);
+	public Hats(String name, double price, double discount, int id, String image, boolean available, String colour, String type, String material) {
+		super(id, name, price, discount, colour, type, available);
 		this.id = id;
 		this.material = material;
 
@@ -29,12 +29,12 @@ public class Gorros extends Productos {
 	}
 
 	
-	public String getTipo() {
-		return tipo;
+	public String getType() {
+		return type;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void settype(String type) {
+		this.type = type;
 	}
 
 	public String toString() {

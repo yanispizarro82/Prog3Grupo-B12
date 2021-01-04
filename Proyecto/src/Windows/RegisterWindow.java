@@ -1,4 +1,4 @@
-package Ventanas;
+package Windows;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,50 +7,50 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import main.Main;
 
-public class Registro extends JFrame {
+public class RegisterWindow extends JFrame {
 
 	private static final long serialVersionUID = -2166905813751874979L;
 
-	public Registro() {
+	public RegisterWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Registrar");
+		setTitle("Register");
 
-		JLabel jlNombre = new JLabel("Nombre: ");
-		JLabel jlCorreo = new JLabel("E-Mail: ");
+		JLabel jlName = new JLabel("Nombre: ");
+		JLabel jlMail = new JLabel("E-Mail: ");
 		JLabel jlPassword = new JLabel("Contraseña: ");
 		JLabel jlDir = new JLabel("Dir. Envio: ");
-		JLabel jlFNacimiento = new JLabel("Fcha. NCMT: ");
-		JTextField jtNombre = new JTextField(20);
+		JLabel jlBDate = new JLabel("Fcha. NCMT: ");
+		JTextField jtName = new JTextField(20);
 		JTextField jtPassword = new JTextField(20);
-		JTextField jtCorreo = new JTextField(20);
-		JTextField jtFNacimiento = new JTextField(20);
+		JTextField jtMail = new JTextField(20);
+		JTextField jtBDate = new JTextField(20);
 		JTextField jtDir = new JTextField(20);
 		JButton jbReg = new JButton("Registrarse");
 
 		setLayout(new GridLayout(6, 1));
 
-		JPanel jpNombre = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JPanel jpName = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JPanel jpPassword = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		JPanel jpCorreo = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		JPanel jpFNacimiento = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JPanel jpMail = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JPanel jpBDate = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JPanel jpDir = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JPanel jpReg = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-		jpNombre.add(jlNombre);
-		jpNombre.add(jtNombre);
-		add(jpNombre);
+		jpName.add(jlName);
+		jpName.add(jtName);
+		add(jpName);
 
 		jpPassword.add(jlPassword);
 		jpPassword.add(jtPassword);
 		add(jpPassword);
 
-		jpCorreo.add(jlCorreo);
-		jpCorreo.add(jtCorreo);
-		add(jpCorreo);
+		jpMail.add(jlMail);
+		jpMail.add(jpMail);
+		add(jpMail);
 
-		jpFNacimiento.add(jlFNacimiento);
-		jpFNacimiento.add(jtFNacimiento);
-		add(jpFNacimiento);
+		jpBDate.add(jlBDate);
+		jpBDate.add(jtBDate);
+		add(jpBDate);
 
 		jpDir.add(jlDir);
 		jpDir.add(jtDir);
@@ -60,8 +60,8 @@ public class Registro extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.ventana.dispose();
-				Main.ventana = new Principal();
+				Main.window.dispose();
+				Main.window = new Principal();
 			}
 		});
 

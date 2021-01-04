@@ -8,22 +8,22 @@ import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import BaseDatos.JDBC;
-import Clases.CamisetasPantalones;
-import Clases.Productos;
-import Clases.Usuarios;
-import Clases.Zapatos;
-import Ventanas.Principal;
+import Classes.Products;
+import Classes.ShirtsPants;
+import Classes.Shoes;
+import Classes.Users;
+import DataBase.JDBC;
+import Windows.Principal;
 
 public class Main {
-	public static Map<String, Usuarios> mapaUsuario = new HashMap<String, Usuarios>();
-	public static Map<String, Productos> mapaProducto = new HashMap<String, Productos>();
-	public static Usuarios usuarioIniciado = null;
-	public static JFrame ventana;
-	public static Thread cargarMas;
-	public static Set<CamisetasPantalones> CamisetasPantalones = new HashSet<CamisetasPantalones>();
-	public static Set<Zapatos> zapatos = new HashSet<Zapatos>();
-	public static Set<Usuarios> usuarios = new HashSet<Usuarios>();
+	public static Map<String, Users> userMap = new HashMap<String, Users>();
+	public static Map<String, Products> prodMap = new HashMap<String, Products>();
+	public static Users userIni = null;
+	public static JFrame window;
+	public static Thread loadMore;
+	public static Set<ShirtsPants> ShirtsPants = new HashSet<ShirtsPants>();
+	public static Set<Shoes> Shoes = new HashSet<Shoes>();
+	public static Set<Users> Users = new HashSet<Users>();
 
 	public static void main(String[] args) {
 
@@ -34,7 +34,7 @@ public class Main {
 
 			@Override
 			public void run() {
-				ventana = new Principal();
+				window = new Principal();
 			}
 
 		});

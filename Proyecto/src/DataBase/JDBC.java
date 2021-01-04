@@ -1,4 +1,4 @@
-package BaseDatos;
+package DataBase;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,11 +10,11 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import Clases.CamisetasPantalones;
-import Clases.Productos;
-import Clases.Tallas;
-import Clases.Usuarios;
-import Clases.Zapatos;
+import Classes.Products;
+import Classes.ShirtsPants;
+import Classes.Shoes;
+import Classes.Sizes;
+import Classes.Users;
 import main.Main;
 
 public class JDBC {
@@ -22,7 +22,7 @@ public class JDBC {
 		try {
 			Class.forName("org.sqlite.JDBC");
 		} catch (ClassNotFoundException e) {
-			System.out.println("No se ha cargado el driver de la base de datos");
+			System.out.println("Driver could not be found in DB");
 		}
 	}
 
@@ -34,84 +34,84 @@ public class JDBC {
 			while (rs.next()) {
 
 				int id = rs.getInt("idProducto");
-				String nombre = rs.getString("nombre");
-				float precio = rs.getFloat("precio");
-				float descuento = rs.getFloat("descuento");
-				String color = rs.getString("color");
-				String imagen = rs.getString("imagen");
-				boolean disponible = (rs.getInt("disponible") == 1);
-				Tallas talla = Tallas.valueOf(rs.getString("talla"));
+				String name = rs.getString("name");
+				float price = rs.getFloat("precio");
+				float discount = rs.getFloat("descuento");
+				String colour = rs.getString("color");
+				String image = rs.getString("imagen");
+				boolean available = (rs.getInt("disponible") == 1);
+				Sizes size = Sizes.valueOf(rs.getString("talla"));
 				String material = rs.getString("material");
-				boolean esCamiseta = (rs.getInt("esCamiseta") == 1);
-				Productos camiseta = new CamisetasPantalones(id, nombre, precio, descuento, color, imagen, disponible,
-						talla, material, esCamiseta);
-				Main.CamisetasPantalones.add((CamisetasPantalones) camiseta);
-				Main.mapaProducto.put(String.valueOf(rs.getInt("idProducto")), camiseta);
+				boolean isShirt = (rs.getInt("esCamiseta") == 1);
+				Products shirt = new ShirtsPants(id, name, price, discount, colour, image, available,
+						size, material, isShirt);
+				Main.ShirtsPants.add((ShirtsPants) shirt);
+				Main.prodMap.put(String.valueOf(rs.getInt("idProducto")), shirt);
 			}
 			rs = stmt.executeQuery("SELECT * FROM zapatos");
 			while (rs.next()) {
 
-				int id = rs.getInt("idProducto");
-				String nombre = rs.getString("nombre");
-				float precio = rs.getFloat("precio");
-				float descuento = rs.getFloat("descuento");
-				String color = rs.getString("color");
-				String imagen = rs.getString("imagen");
-				boolean disponible = (rs.getInt("disponible") == 1);
+				int id = rs.getInt("idProduct");
+				String name = rs.getString("name");
+				float price = rs.getFloat("price");
+				float discount = rs.getFloat("discount");
+				String colour = rs.getString("colour");
+				String image = rs.getString("image");
+				boolean available = (rs.getInt("available") == 1);
 				int talla = rs.getInt("talla");
 				String material = rs.getString("material");
-				Productos zapato = new Zapatos(id, nombre, precio, descuento, color, imagen, talla, material, disponible);
-				Main.zapatos.add((Zapatos) zapato);
-				Main.mapaProducto.put(String.valueOf(rs.getInt("idProducto")), zapato);
+				Products shoes = new Shoes(id, name, price, discount, colour, image, talla, material, available);
+				Main.Shoes.add((Shoes) shoes);
+				Main.prodMap.put(String.valueOf(rs.getInt("idProduct")), shoes);
 			}
 
 			conn.close();
 		} catch (SQLException e) {
-			System.out.println("Error de SQL");
+			System.out.println("SQL error");
 		}
 	}
 
-	public static boolean comprobarUsuario(String correo) {
-		boolean existe = false;
+	public static boolean checkUser(String mail) {
+		boolean exists = false;
 		try {
 
 			Connection conn = DriverManager.getConnection("jdbc:sqlite:tienda.db");
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM usuario");
 			while (rs.next()) {
-				if (rs.getString("correo").equals(correo)) {
-					existe = true;
+				if (rs.getString("mail").equals(mail)) {
+					exists = true;
 				}
 			}
 
 			conn.close();
 		} catch (SQLException e) {
-			System.out.println("Error de SQL");
+			System.out.println("SQL error");
 		}
-		return existe;
+		return exists;
 	}
 
-	public static boolean comprobarContrasenya(String correo, String contrasenya) {
-		boolean coincide = false;
+	public static boolean checkPassword(String mail, String password) {
+		boolean match = false;
 		try {
 
 			Connection conn = DriverManager.getConnection("jdbc:sqlite:tienda.db");
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM usuario");
 			while (rs.next()) {
-				if (rs.getString("correo").equals(correo) && rs.getString("contrasenya").equals(contrasenya)) {
-					coincide = true;
+				if (rs.getString("mail").equals(mail) && rs.getString("password").equals(password)) {
+					match = true;
 				}
 			}
 
 			conn.close();
 		} catch (SQLException e) {
-			System.out.println("Error de SQL");
+			System.out.println("SQL error");
 		}
-		return coincide;
+		return match;
 	}
 
-	public static void cargarUsuarios() {
+	public static void loadUser() {
 
 		try {
 
@@ -119,9 +119,9 @@ public class JDBC {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM usuario");
 			while (rs.next()) {
-				Usuarios usuario = new Usuarios(rs.getString("correo"), rs.getString("contrasenya"));
-				Main.usuarios.add(usuario);
-				Main.mapaUsuario.put(usuario.getCorreo(), usuario);
+				Users user = new Users(rs.getString("correo"), rs.getString("contrasenya"));
+				Main.Users.add(user);
+				Main.userMap.put(user.getMail(), user);
 			}
 
 			conn.close();
@@ -141,16 +141,16 @@ public class JDBC {
 			rs.next();
 			if (rs.getInt("conteo") == 0) {
 				stmt = conn.prepareStatement("INSERT INTO usuario VALUES(?,?)");
-				JOptionPane.showMessageDialog(Main.ventana, "Cuenta creada", "El usuario ha sido creado con éxito",
+				JOptionPane.showMessageDialog(Main.window, "Cuenta creada", "El usuario ha sido creado con éxito",
 						JOptionPane.INFORMATION_MESSAGE);
 				stmt.setString(1, usu);
 				stmt.setString(2, contra);
 				stmt.execute();
-				Usuarios usuario = new Usuarios(usu, contra);
-				Main.usuarios.add(usuario);
-				Main.mapaUsuario.put(usuario.getCorreo(), usuario);
+				Users user = new Users(usu, contra);
+				Main.Users.add(user);
+				Main.userMap.put(user.getMail(), user);
 			} else {
-				JOptionPane.showMessageDialog(Main.ventana, "Usuario ya existe", "El usuario ya existe",
+				JOptionPane.showMessageDialog(Main.window, "Usuario ya existe", "El usuario ya existe",
 						JOptionPane.ERROR_MESSAGE);
 			}
 
@@ -161,12 +161,12 @@ public class JDBC {
 
 	}
 
-	public static boolean loDesea(Usuarios usu, String id) {
+	public static boolean loDesea(Users usu, String id) {
 		boolean desea = false;
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:sqlite:tienda.db");
 			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM deseados WHERE correo=?;");
-			stmt.setString(1, usu.getCorreo());
+			stmt.setString(1, usu.getMail());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				if (rs.getString("idCamiseta").isEmpty()) {
@@ -185,18 +185,18 @@ public class JDBC {
 		return desea;
 	}
 
-	public static ArrayList<Productos> productosDeseados(Usuarios usuario) {
-		ArrayList<Productos> productos = new ArrayList<Productos>();
+	public static ArrayList<Products> productosDeseados(Users usuario) {
+		ArrayList<Products> productos = new ArrayList<Products>();
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:sqlite:tienda.db");
 			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM deseados WHERE correo=?;");
-			stmt.setString(1, usuario.getCorreo());
+			stmt.setString(1, usuario.getMail());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				if (rs.getString("idCamiseta").isEmpty()) {
-					productos.add(Main.mapaProducto.get(rs.getInt("idZapatos")));
+					productos.add(Main.prodMap.get(rs.getInt("idShoes")));
 				} else {
-					productos.add(Main.mapaProducto.get(rs.getInt("idCamiseta")));
+					productos.add(Main.prodMap.get(rs.getInt("idShirts")));
 				}
 			}
 		} catch (SQLException e) {

@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/Clases/Pedidos.java=UTF-8
-encoding//src/Ventanas/Principal.java=UTF-8
-encoding//src/Ventanas/Registro.java=UTF-8
+encoding//src/Classes/Order.java=UTF-8
+encoding//src/Windows/Principal.java=UTF-8
+encoding//src/Windows/RegisterWindow.java=UTF-8
+encoding//src/main/LoggerShop.java=UTF-8

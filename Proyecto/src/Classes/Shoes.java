@@ -1,16 +1,16 @@
-package Clases;
+package Classes;
 
-public class Zapatos extends Productos {
+public class Shoes extends Products {
 	private int id;
 	private String material;
-	private int talla;
+	private int size;
 
-	public Zapatos(int id, String nombre, double precio, double descuento, String color, String imagen, int talla,
-			String material, boolean disponible) {
-		super(id, nombre, precio, descuento, color, imagen, disponible);
+	public Shoes(int id, String name, double price, double discount, String colour, String image, int size,
+			String material, boolean available) {
+		super(id, name, price, discount, colour, image, available);
 		this.id = id;
 		this.material = material;
-		this.talla = talla;
+		this.size = size;
 
 	}
 
@@ -30,12 +30,12 @@ public class Zapatos extends Productos {
 		this.material = material;
 	}
 
-	public int getTalla() {
-		return talla;
+	public int getSize() {
+		return size;
 	}
 
-	public void setTalla(int talla) {
-		this.talla = talla;
+	public void setSize(int size) {
+		this.size = size;
 	}
 
 	public String toString() {
